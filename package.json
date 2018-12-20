@@ -1,0 +1,20 @@
+{
+  "name": "dnd_map_app",
+  "version": "1.0.0",
+  "description": "dnd map maker",
+  "main": "index.js",
+  "scripts": {
+    "test": "console.log('test command');"
+  },
+  "repository": {
+    "type": "git",
+    "url": "change me"
+  },
+  "keywords": [
+    "dnd",
+    "map",
+    "maker"
+  ],
+  "author": "shane marvin may",
+  "license": "ISC"
+}
