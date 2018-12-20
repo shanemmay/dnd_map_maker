@@ -17,10 +17,10 @@
     <div class="row">
         <!-- menu -->
         <div class="col">
-            <input id="img_upload" class="btn btn-primary" type="file" value="add img"  /> <br>
+            <label>add img</label><input id="img_upload"  type="file" value="add img"  /> <br>
             <button id="del">del</button> <br>
-            <button>save map</button> <br>
-            <button>upload map</button> <br>
+            <a id="save_map">save map</a> <br>
+            <label>upload map</label><input id="upload_map"  type="file" value="upload map"  /> <br>
         </div>
         <div class="col">
             <canvas id="canvas" width="500" height="500" style="border:1px solid #eee; margin-top: 10vh;"></canvas>
@@ -43,7 +43,6 @@
         }
         for(let i = canvas.height/10; i <= canvas.height; i += canvas.height/10)
         {
-            console.log([0,i,0,canvas.width]);
             let line = new fabric.Line([0,i,canvas.width, i],
             {
                 stroke:"#000",
@@ -51,16 +50,6 @@
             });
             canvas.add(line);
         }
-
-        var rect = new fabric.Rect({
-            left: 100,
-            top: 100,
-            fill: '#0ff',
-            width: 100,
-            height: 100
-        });
-        canvas.add(rect);
-
 
         //upload images to canvas
         document.querySelector("#img_upload").onchange = (e) =>
@@ -88,6 +77,42 @@
         document.querySelector("#del").onclick = () =>
         {
             canvas.remove(canvas.getActiveObject());
+        };
+
+        //setting up save functionality
+        document.querySelector("#save_map").onclick = (e) =>
+        {
+            json = canvas.toJSON();
+            let data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json));
+            //console.log(data);
+            let link = document.querySelector("#save_map");
+            link.setAttribute("href",     data     );
+            link.setAttribute("download", (new Date())+".json");
+            //link.click();
+        };
+
+        //uploading map from json file
+        document.getElementById('upload_map').onchange = () => 
+        {
+            var files = document.getElementById('upload_map').files;
+            console.log(files);
+            if (files.length <= 0) 
+            {
+                return false;
+            }
+            
+            var fr = new FileReader();
+            
+            fr.onload = function(e) 
+            { 
+                var result = JSON.parse(e.target.result);
+
+                canvas.loadFromJSON(result);
+
+                var formatted = JSON.stringify(result, null, 2);
+            }
+            
+            fr.readAsText(files.item(0));
         };
     </script>
 </body>
