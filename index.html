@@ -19,7 +19,7 @@
         <div class="col">
             <button><img src=hamburger.jpg width="30px" height= "30px"></button>
             <input id="img_upload" class="btn btn-primary" type="file" value="add img"  /> <br>
-            <button>del</button> <br>
+            <button id="del">del</button> <br>
             <button>save map</button> <br>
             <button>upload map</button> <br>
         </div>
@@ -83,6 +83,12 @@
                 };
             };
             reader.readAsDataURL(e.target.files[0]);
+        };
+
+        //setting up deleting function
+        document.querySelector("#del").onclick = () =>
+        {
+            canvas.remove(canvas.getActiveObject());
         };
     </script>
 </body>
