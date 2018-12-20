@@ -25,7 +25,9 @@
         <div class="col">
             <canvas id="canvas" width="500" height="500" style="border:1px solid #eee; margin-top: 10vh;"></canvas>
         </div>
-        <div class="col"></div>
+        <div class="col">
+            <button id="copy">copy</button>
+        </div>
     </div>
 
     <script>
@@ -114,6 +116,15 @@
             
             fr.readAsText(files.item(0));
         };
+        
+        //copy and paste functionality
+        document.querySelector("#copy").onclick = () =>
+        {
+            canvas.getActiveObject().clone(function(cloned) {
+                canvas.add(cloned);
+            });
+        };
+        
     </script>
 </body>
 </html>
