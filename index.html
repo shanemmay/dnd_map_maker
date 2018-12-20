@@ -17,10 +17,10 @@
     <div class="row">
         <!-- menu -->
         <div class="col">
-            <button>add img</button>
-            <button>del</button>
-            <button>save map</button>
-            <button>upload map</button>
+            <input id="img_upload" class="btn btn-primary" type="file" value="add img"  /> <br>
+            <button>del</button> <br>
+            <button>save map</button> <br>
+            <button>upload map</button> <br>
         </div>
         <div class="col">
             <canvas id="canvas" width="500" height="500" style="border:1px solid #eee; margin-top: 10vh;"></canvas>
@@ -60,6 +60,29 @@
             height: 100
         });
         canvas.add(rect);
+
+
+        //upload images to canvas
+        document.querySelector("#img_upload").onchange = (e) =>
+        {
+            let reader = new FileReader();
+            reader.onload = (event) =>
+            {
+                let img = new Image();
+                img.src = event.target.result;
+                img.onload = () => 
+                {
+                    let image = new fabric.Image(img,
+                    {
+                        left:10,
+                        top:10
+                    });
+                    canvas.add(image);
+                    canvas.renderAll();
+                };
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        };
     </script>
 </body>
 </html>
