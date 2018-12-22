@@ -22,8 +22,8 @@
 <body >
     <div class="row">
         <!-- menu -->
-        <button type="button" id="sideNav" class="Nav">Side Navigation</button> 
-        <nav id="Navigation" style="display: none;"> <br><br><br><br><br>
+        <img id="sideNav" src="menu_hamburger.png" width="40" height="40" style="margin-top: 1vh; margin-left: 1.5vw;" > 
+        <nav id="Navigation" style="display: none;">
             <label>add img</label><input id="img_upload"  type="file" value="add img"  /> <br>
             <button id="del">del</button> <br>
             <a id="save_map">save map</a> <br>
@@ -131,11 +131,6 @@
                 canvas.add(cloned);
             });
         };
-
-        //Size of the Side Navigation button
-        var myButton = document.getElementById('sideNav');
-        myButton.style.height = '100px';
-        myButton.style.width= '100px';
 
         //Toggle the side navigation button when clicked
         $("#sideNav").click(function(){
