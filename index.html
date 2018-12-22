@@ -12,26 +12,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!-- FABRIC JS -->
     <script src="fabric.js"></script>
-    <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous">
-    </script>
-
-
 </head>
 <body >
-
-    <!-- Add menu button -->
-    <button type="button" id="navButton"><img src=hamburger.jpg width="30px" height= "30px"></button>
-    <form id = 'sideNav' style="display:none;">
-        <input id="img_upload" class="btn btn-primary" type="file" value="add img"  /> <br>
-        <button id="del">del</button> <br>
-        <button>save map</button> <br>
-        <button>upload map</button> <br>
-    </form>
-
     <div class="row">
+        <!-- menu -->
+        <div class="col">
+            <label>add img</label><input id="img_upload"  type="file" value="add img"  /> <br>
+            <button id="del">del</button> <br>
+            <a id="save_map">save map</a> <br>
+            <label>upload map</label><input id="upload_map"  type="file" value="upload map"  /> <br>
+        </div>
         <div class="col">
             <canvas id="canvas" width="500" height="500" style="border:1px solid #eee; margin-top: 10vh;"></canvas>
         </div>
@@ -90,7 +80,7 @@
         {
             canvas.remove(canvas.getActiveObject());
         };
-      
+
         //setting up save functionality
         document.querySelector("#save_map").onclick = (e) =>
         {
@@ -134,10 +124,6 @@
                 canvas.add(cloned);
             });
         };
-      
-        $("#navButton").click(function() {
-            $("#sideNav").toggle();
-        });
         
     </script>
 </body>
