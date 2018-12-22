@@ -12,16 +12,23 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!-- FABRIC JS -->
     <script src="fabric.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+
 </head>
 <body >
     <div class="row">
         <!-- menu -->
-        <div class="col">
+        <button type="button" id="sideNav" class="Nav">Side Navigation</button> 
+        <nav id="Navigation" style="display: none;"> <br><br><br><br><br>
             <label>add img</label><input id="img_upload"  type="file" value="add img"  /> <br>
             <button id="del">del</button> <br>
             <a id="save_map">save map</a> <br>
             <label>upload map</label><input id="upload_map"  type="file" value="upload map"  /> <br>
-        </div>
+        </nav>
         <div class="col">
             <canvas id="canvas" width="500" height="500" style="border:1px solid #eee; margin-top: 10vh;"></canvas>
         </div>
@@ -124,6 +131,16 @@
                 canvas.add(cloned);
             });
         };
+
+        //Size of the Side Navigation button
+        var myButton = document.getElementById('sideNav');
+        myButton.style.height = '100px';
+        myButton.style.width= '100px';
+
+        //Toggle the side navigation button when clicked
+        $("#sideNav").click(function(){
+            $("#Navigation").toggle();
+        });
         
     </script>
 </body>
