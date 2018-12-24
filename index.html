@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>DnD Map Maker</title>
+    <title>DnD Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
     <!-- BOOTSTRAP CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -17,27 +19,100 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous">
     </script>
+    <style>
+        /* The side navigation menu */
+        .sidenav {
+        height: 100%; /* 100% Full-height */
+        width: 0; /* 0 width - change this with JavaScript */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Stay on top */
+        top: 0; /* Stay at the top */
+        left: 0;
+        background-color: rgb(139, 20, 30); /* Black*/
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 60px; /* Place content 60px from the top */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+        }
 
+        /* The navigation menu links */
+        .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+        }
+
+        /* When you mouse over the navigation links, change their color */
+        .sidenav a:hover {
+        color: #f1f1f1;
+        }
+
+        /* Position and style the close button (top right corner) */
+        .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        }
+
+        /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+        #main {
+        transition: margin-left .5s;
+        padding: 20px;
+        }
+
+        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+        @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+        }
+    </style>
 </head>
-<body >
-    <div class="row">
-        <!-- menu -->
-        <img id="sideNav" src="menu_hamburger.png" width="40" height="40" style="margin-top: 1vh; margin-left: 1.5vw;" > 
-        <nav id="Navigation" style="display: none;">
-            <label>add img</label><input id="img_upload"  type="file" value="add img"  /> <br>
-            <button id="del">del</button> <br>
-            <a id="save_map">save map</a> <br>
-            <label>upload map</label><input id="upload_map"  type="file" value="upload map"  /> <br>
-        </nav>
-        <div class="col">
-            <canvas id="canvas" width="500" height="500" style="border:1px solid #eee; margin-top: 10vh;"></canvas>
-        </div>
-        <div class="col">
-            <button id="copy">copy</button>
-        </div>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <label>add img</label><input id="img_upload"  type="file" value="add img"  /> <br>
+        <button id="del">del</button> <br>
+        <a id="save_map">save map</a> <br>
+        <label>upload map</label><input id="upload_map"  type="file" value="upload map"  /> <br>
     </div>
+      
+      <!-- Use any element to open the sidenav -->
+      <span onclick="openNav()"><img id="sideNav" src="menu_hamburger.png" width="40" height="40"></span>
+    </div>
+      <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+    <div id="main">
+        <div class="row">
+            <!-- menu -->
+            <div class="col">
+                <canvas id="canvas" width="500" height="500" style="border:1px solid #eee; margin-top: 10vh;"></canvas>
+            </div>
+            <div class="col">
+                <button id="copy">copy</button>
+            </div>
+         </div>
+    </div>
+     
 
-    <script>
+      
+      <script>
+          /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+            function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            }
+
+            /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+            function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            }
+      </script>
+
+<script>
         let canvas = new fabric.Canvas('canvas');
        
         //setting up game board
@@ -136,7 +211,7 @@
         $("#sideNav").click(function(){
             $("#Navigation").toggle();
         });
-        
+
     </script>
 </body>
 </html>
